@@ -7,7 +7,12 @@ class machineRoutes():
     '''
     class routeMachinePoints(Resource):
         def get(self, machine_id):
-            data = {
-                'point': 90
-            }
+            if machine_id == 'EC00000000000000':
+                data = {
+                    'point': 0
+                }
+            else:
+                data = {
+                    'point': 0
+                }
             return data, 200
