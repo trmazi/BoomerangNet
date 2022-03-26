@@ -9,16 +9,17 @@ class routeUsers():
             if user_id is None:
                 return None
             
+            items = []
+
             userdata = {
                 'userId': user_id,
                 'nation': 'KR',
                 'name': 'Trmazi',
-                'icon': '',
-                'iconId': 1,
-                'level': 69,
+                'iconId': 1039,
+                'level': 5,
                 'beatPoint': 500,
-                'exp': 1000,
-                'userItems': [{}],
+                'exp': 100,
+                'userItems': items,
             }
             return userdata, 200
 
