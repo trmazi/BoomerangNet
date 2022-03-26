@@ -1,3 +1,5 @@
+import json
+
 from boomerang.data.sql import coreSQL
 
 class userDataHandle():
@@ -26,7 +28,30 @@ class userDataHandle():
                     'id': userid,
                     'cardid': card,
                     'banned': banned,
-                    'data': data
+                    'data': json.load(data)
                 },
                 True
             )
+
+    def userFromUserID(userid: int):
+        '''
+        Gets a user's userID, returns user's profile.
+        '''
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM user where id= {userid}")
+
+        result = cursor.fetchone()
+
+        if result is None:
+            connection.close()
+            return None
+        else:
+            userid, card, banned, data = result
+            connection.close()
+            return {
+                'id': userid,
+                'cardid': card,
+                'banned': banned,
+                'data': json.load(data)
+            }
