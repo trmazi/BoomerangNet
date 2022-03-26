@@ -5,6 +5,7 @@ import os
 
 # Import the services
 from boomerang.services.routes.routestatics import routeStatics
+from boomerang.services.routes.machineroutes import machineRoutes
 
 app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
 api = Api(app)
@@ -15,6 +16,7 @@ def home():
 
 api.add_resource(routeStatics.routeEmergency, '/Emergency.txt')
 api.add_resource(routeStatics.routeNewSongEvent, '/newsongevent.txt')
+api.add_resource(machineRoutes.routeMachinePoints, '/games/gameCenters/points/machine/<string:machine_id>')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")
