@@ -13,6 +13,14 @@ class routeStages():
         def post(self, user_id):
             return 200
 
+    class routeGuestUserMusicHistories(Resource):
+        def post(self):
+            return 200
+
+    class routeGuestUserFinalHistories(Resource):
+        def post(self):
+            return 200
+
     class routeStageNearRankings(Resource):
         def post(self):
             return 200

@@ -38,10 +38,12 @@ api.add_resource(routeMusic.routeNearRankings, '/services/music/<music_id>/nearR
 api.add_resource(routeAuth.noCardLogin, '/services/auth/noCardLogin')
 api.add_resource(routeAuth.login, '/services/auth/login')
 api.add_resource(routeUsers.routeUserGet, '/services/users/<string:user_id>')
-api.add_resource(routeUsers.routeGuestUserConfig, '/services/users/configurations')
+api.add_resource(routeUsers.routeGuestUserConfig, '/services/users//configurations')
 api.add_resource(routeUsers.routeUserConfig, '/services/users/<user_id>/configurations')
 api.add_resource(routeStages.routeUserMusicHistories, '/services/stages/user/<user_id>/music/histories')
 api.add_resource(routeStages.routeUserFinalHistories, '/services/stages/user/<user_id>/final/histories')
+api.add_resource(routeStages.routeGuestUserMusicHistories, '/services/stages/user//music/histories')
+api.add_resource(routeStages.routeGuestUserFinalHistories, '/services/stages/user//final/histories')
 api.add_resource(routeStages.routeStageNearRankings, '/services/stages/nearRankings')
 
 def main() -> None:
@@ -50,7 +52,7 @@ def main() -> None:
     args = parser.parse_args()
 
     # Run the app
-    app.run(host='0.0.0.0', port=args.port, debug=True)
+    app.run(host='0.0.0.0', port=args.port, debug=False)
 
 if __name__ == '__main__':
     main()
