@@ -1,6 +1,6 @@
 from flask_restful import Resource
 
-class routeNotices():
+class routeNotices(Resource):
     '''
     Class for handling newsposts. For now,
     since we don't have a DB, this is bogus.
