@@ -14,6 +14,9 @@ from boomerang.services.routes.auth import routeAuth
 from boomerang.services.routes.users import routeUsers
 from boomerang.services.routes.stages import routeStages
 
+# Import DB stuff
+import boomerang.data.sql
+
 app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
 api = Api(app)
 
@@ -52,6 +55,7 @@ def main() -> None:
     args = parser.parse_args()
 
     # Run the app
+    boomerang.data.sql.setupDatabase
     app.run(host='0.0.0.0', port=args.port, debug=False)
 
 if __name__ == '__main__':

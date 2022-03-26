@@ -1,0 +1,1 @@
+This is the Database folder. SQL will reside here. Do not touch this folder.
