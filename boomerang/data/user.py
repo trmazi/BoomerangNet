@@ -1,6 +1,5 @@
-import json
-
 from boomerang.data.sql import coreSQL
+from boomerang.data.validated import ValidatedDict
 
 class userDataHandle():
     '''
@@ -24,12 +23,12 @@ class userDataHandle():
             userid, card, banned, data = result
             connection.close()
             return (
-                {
+                ValidatedDict({
                     'id': userid,
                     'cardid': card,
                     'banned': banned,
-                    'data': json.load(data)
-                },
+                    'data': data
+                }),
                 True
             )
 
@@ -49,9 +48,9 @@ class userDataHandle():
         else:
             userid, card, banned, data = result
             connection.close()
-            return {
+            return ValidatedDict({
                 'id': userid,
                 'cardid': card,
                 'banned': banned,
-                'data': json.load(data)
-            }
+                'data': data
+            })

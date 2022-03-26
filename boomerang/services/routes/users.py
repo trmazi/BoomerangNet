@@ -1,6 +1,5 @@
 from flask_restful import Resource
 
-from boomerang.data.validated import ValidatedDict
 from boomerang.data.user import userDataHandle
 
 class routeUsers():
@@ -12,7 +11,7 @@ class routeUsers():
             if user_id is None:
                 return None
 
-            user:ValidatedDict = userDataHandle.userFromUserID(int(user_id))
+            user = userDataHandle.userFromUserID(int(user_id))
             userdict = user.get_dict('data')
 
             userdata = {
