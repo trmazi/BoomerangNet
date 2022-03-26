@@ -14,6 +14,7 @@ api = Api(app)
 def home():
     return render_template('base.html')
 
+# Start using the imports
 api.add_resource(routeStatics.routeEmergency, '/Emergency.txt')
 api.add_resource(routeStatics.routeNewSongEvent, '/newsongevent.txt')
 api.add_resource(machineRoutes.routeMachinePoints, '/games/gameCenters/points/machine/<string:machine_id>')
