@@ -1,5 +1,4 @@
-from collections import UserDict
-from flask_restful import Resource
+from flask_restful import Resource, reqparse
 
 class routeMusic():
     '''
@@ -82,3 +81,13 @@ class routeMusic():
             }
 
             return data, 200
+
+    class routeNearRankings(Resource):
+        def get(self, music_id):
+            print(music_id)
+            parser = reqparse.RequestParser()
+            parser.add_argument('score')
+            args = parser.parse_args
+
+            print(args['score'])
+            return [{}], 200
