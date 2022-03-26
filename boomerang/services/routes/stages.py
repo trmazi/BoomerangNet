@@ -22,5 +22,5 @@ class routeStages():
             return 200
 
     class routeStageNearRankings(Resource):
-        def post(self):
+        def get(self):
             return 200
