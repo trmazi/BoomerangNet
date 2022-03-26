@@ -17,7 +17,7 @@ class routeUsers():
             userdata = {
                 'userId': user.get_int('id', None),
                 'nation': userdict.get_str('nation', "KR"),
-                'name': userdict.get_str('Name', "Guest"),
+                'name': userdict.get_str('name', "Newcomer"),
                 'iconId': userdict.get_int('icon', 1000),
                 'level': userdict.get_int('level', 1),
                 'beatPoint': userdict.get_int('points'),
