@@ -2,3 +2,4 @@ flask
 flask_restful
 argparse
 sqlite3
+typing-extensions
