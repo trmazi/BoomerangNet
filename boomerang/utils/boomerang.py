@@ -37,6 +37,8 @@ api.add_resource(routeMusic.routeNearRankings, '/services/music/<music_id>/nearR
 api.add_resource(routeAuth.noCardLogin, '/services/auth/noCardLogin')
 api.add_resource(routeAuth.login, '/services/auth/login')
 api.add_resource(routeUsers.routeUserGet, '/services/users/<string:user_id>')
+api.add_resource(routeUsers.routeGuestUserConfig, '/services/users/configurations')
+api.add_resource(routeUsers.routeUserConfig, '/services/users/<user_id>/configurations')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")

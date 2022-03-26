@@ -21,3 +21,11 @@ class routeUsers():
                 'userItems': [{}],
             }
             return userdata, 200
+
+    class routeUserConfig(Resource):
+        def post(self, user_id):
+            return 200
+
+    class routeGuestUserConfig(Resource):
+        def post(self):
+            return 200
