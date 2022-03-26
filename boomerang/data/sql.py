@@ -2,6 +2,13 @@ from os.path import exists
 import sqlite3
 import sys
 
+class coreSQL():
+    '''
+    Core SQL datas, like connections.
+    '''
+    def makeConnection():
+        return sqlite3.connect('./boomerang/db/database.sql')
+
 class setupDatabase():
     '''
     Class to verify that the DB is correct.
@@ -20,7 +27,7 @@ class setupDatabase():
         '''
         Creates a database with all required tables.
         '''
-        connection = sqlite3.connect('./boomerang/db/database.sql')
+        connection = coreSQL.makeConnection()
 
         tables = [
             "CREATE TABLE notice (id INTEGER PRIMARY KEY AUTOINCREMENT, nation TEXT, title TEXT, conenttype TEXT, content TEXT, content2 TEXT, image TEXT)",
