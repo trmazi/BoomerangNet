@@ -8,6 +8,7 @@ from boomerang.services.routes.routestatics import routeStatics
 from boomerang.services.routes.machineroutes import machineRoutes
 from boomerang.services.routes.ranking import routeRanking
 from boomerang.services.routes.notice import routeNotices
+from boomerang.services.routes.servdata import routeBaseData
 from boomerang.services.routes.auth import routeAuth
 
 app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
@@ -27,6 +28,7 @@ api.add_resource(routeStatics.routeNewSongEvent, '/services/newsongevent.txt')
 api.add_resource(machineRoutes.routeMachinePoints, '/services/games/gameCenters/points/machine/<string:machine_id>')
 api.add_resource(routeRanking.bootupRanking, '/services/games/bestRankings')
 api.add_resource(routeNotices, '/services/games/notices')
+api.add_resource(routeBaseData.routeUserLevelTable, '/services/baseData/userLevelTable')
 api.add_resource(routeAuth.noCardLogin, '/services/auth/noCardLogin')
 
 def main() -> None:
