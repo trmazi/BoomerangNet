@@ -3,6 +3,9 @@ from flask_restful import Api, Resource
 import argparse
 import os
 
+# Import the services
+from boomerang.services.routes.routestatics import routeStatics
+
 app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
 api = Api(app)
 
@@ -10,6 +13,8 @@ api = Api(app)
 def home():
     return render_template('base.html')
 
+api.add_resource(routeStatics.routeEmergency, '/Emergency.txt')
+api.add_resource(routeStatics.routeNewSongEvent, '/newsongevent.txt')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")
