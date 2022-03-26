@@ -85,9 +85,4 @@ class routeMusic():
     class routeNearRankings(Resource):
         def get(self, music_id):
             print(music_id)
-            parser = reqparse.RequestParser()
-            parser.add_argument('score')
-            args = parser.parse_args
-
-            print(args['score'])
             return [{}], 200
