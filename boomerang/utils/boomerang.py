@@ -1,9 +1,14 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_restful import Api, Resource
 import argparse
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
 api = Api(app)
+
+@app.route('/')
+def home():
+    return render_template('base.html')
 
 
 def main() -> None:
