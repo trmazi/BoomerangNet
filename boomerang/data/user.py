@@ -16,9 +16,11 @@ class userDataHandle():
         result = cursor.fetchone()
 
         if result is None:
+            connection.close()
             return ({}, False)
         else:
             userid, card, banned, data = result
+            connection.close()
             return (
                 {
                     'id': userid,
