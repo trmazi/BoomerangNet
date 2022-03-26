@@ -9,6 +9,7 @@ from boomerang.services.routes.machineroutes import machineRoutes
 from boomerang.services.routes.ranking import routeRanking
 from boomerang.services.routes.notice import routeNotices
 from boomerang.services.routes.servdata import routeBaseData
+from boomerang.services.routes.music import routeMusic
 from boomerang.services.routes.auth import routeAuth
 from boomerang.services.routes.users import routeUsers
 
@@ -30,6 +31,7 @@ api.add_resource(machineRoutes.routeMachinePoints, '/services/games/gameCenters/
 api.add_resource(routeRanking.bootupRanking, '/services/games/bestRankings')
 api.add_resource(routeNotices, '/services/games/notices')
 api.add_resource(routeBaseData.routeUserLevelTable, '/services/baseData/userLevelTable')
+api.add_resource(routeMusic.routeMusicBestRankings, '/services/music/<string:music_id>/user/<string:user_id>/bestRankings')
 api.add_resource(routeAuth.noCardLogin, '/services/auth/noCardLogin')
 api.add_resource(routeAuth.login, '/services/auth/login')
 api.add_resource(routeUsers.routeUserGet, '/services/users/<string:user_id>')
