@@ -1,4 +1,11 @@
 # BoomerangNet
-A 3rd party network for Beatcraft Cyclon. 
+A 3rd party network for Beatcraft Cyclon, written in Flask. 
 
-*What goes around, comes around, like a boomerang!*
+## *What goes around, comes around, like a boomerang!*
+Legit one of the best songs in this game
+
+## What is the purpose of this?
+Beatcraft Cyclon is a really fun game, so I decided to start working on a server for it!
+
+## How to use
+Well, I've not written much code to make this easy to use, but you'll just want to run the startup file in the root of the repo. Since this is flask, starting in a prod environment is trivial, and I'll work on that soon.
