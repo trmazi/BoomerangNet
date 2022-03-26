@@ -12,7 +12,7 @@ class routeNotices(Resource):
             'title': 'Welcome to BoomerangNet!',
             'noticeType': 'event',
             'contentType': 'text',
-            'content': 'A 3rd party network for Beatcraft Cyclon, written in Flask.',
+            'content': 'A 3rd party network for Beatcraft Cyclon,\nwritten in Flask.',
             'content2': "We are glad to see you!",
             'image': '',
         }]
