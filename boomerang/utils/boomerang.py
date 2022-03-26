@@ -22,12 +22,12 @@ def services():
     return "If you're reading this, services are OK!"
 
 # Start using the imports
-api.add_resource(routeStatics.routeEmergency, '/service/Emergency.txt')
-api.add_resource(routeStatics.routeNewSongEvent, '/service/newsongevent.txt')
-api.add_resource(machineRoutes.routeMachinePoints, '/service/games/gameCenters/points/machine/<string:machine_id>')
-api.add_resource(routeRanking.bootupRanking, '/service/games/bestRankings')
-api.add_resource(routeNotices, '/service/games/notices')
-api.add_resource(routeAuth.noCardLogin, '/service/auth/noCardLogin')
+api.add_resource(routeStatics.routeEmergency, '/services/Emergency.txt')
+api.add_resource(routeStatics.routeNewSongEvent, '/services/newsongevent.txt')
+api.add_resource(machineRoutes.routeMachinePoints, '/services/games/gameCenters/points/machine/<string:machine_id>')
+api.add_resource(routeRanking.bootupRanking, '/services/games/bestRankings')
+api.add_resource(routeNotices, '/services/games/notices')
+api.add_resource(routeAuth.noCardLogin, '/services/auth/noCardLogin')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")
