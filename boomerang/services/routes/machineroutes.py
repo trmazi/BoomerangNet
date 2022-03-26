@@ -13,6 +13,6 @@ class machineRoutes():
                 }
             else:
                 data = {
-                    'point': 0
+                    'point': 90
                 }
             return data, 200
