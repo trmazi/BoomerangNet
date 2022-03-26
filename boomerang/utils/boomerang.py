@@ -10,6 +10,7 @@ from boomerang.services.routes.ranking import routeRanking
 from boomerang.services.routes.notice import routeNotices
 from boomerang.services.routes.servdata import routeBaseData
 from boomerang.services.routes.auth import routeAuth
+from boomerang.services.routes.users import routeUsers
 
 app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
 api = Api(app)
@@ -31,6 +32,7 @@ api.add_resource(routeNotices, '/services/games/notices')
 api.add_resource(routeBaseData.routeUserLevelTable, '/services/baseData/userLevelTable')
 api.add_resource(routeAuth.noCardLogin, '/services/auth/noCardLogin')
 api.add_resource(routeAuth.login, '/services/auth/login')
+api.add_resource(routeUsers.routeUserGet, '/services/users/<string:user_id>')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")
