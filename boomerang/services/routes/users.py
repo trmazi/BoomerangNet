@@ -1,5 +1,7 @@
 from flask_restful import Resource
+from flask import request
 
+from boomerang.data.validated import ValidatedDict
 from boomerang.data.user import userDataHandle
 
 class routeUsers():
@@ -13,6 +15,7 @@ class routeUsers():
 
             user = userDataHandle.userFromUserID(int(user_id))
             userdict = user.get_dict('data')
+            configdict = userdict.get_dict('config')
 
             userdata = {
                 'userId': user.get_int('id', None),
@@ -22,12 +25,27 @@ class routeUsers():
                 'level': userdict.get_int('level', 1),
                 'beatPoint': userdict.get_int('points'),
                 'exp': userdict.get_int('exp'),
-                'userItems': [],
+                'configurations': configdict,
             }
             return userdata, 200
 
     class routeUserConfig(Resource):
         def post(self, user_id):
+            user = userDataHandle.userFromUserID(int(user_id))
+            userdict = user.get_dict('data')
+
+            config = userdict.get_dict('config', {})
+            sent = ValidatedDict(request.json)
+            config.replace_str('IsUseKeySound', sent.get_str('IsUseKeySound'))
+            config.replace_int('KeyEFfect', sent.get_int('KeyEFfect', 1))
+            config.replace_str('KeyVolume', sent.get_str('KeyVolume'))
+            config.replace_str('Speed', sent.get_str('Speed'))
+
+            userdict.replace_dict('config', config)
+            user.replace_dict('data', userdict)
+
+            userDataHandle.putUserFromUserID(user_id, user)
+
             return 200
 
     class routeGuestUserConfig(Resource):

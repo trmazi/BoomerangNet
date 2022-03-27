@@ -1,3 +1,5 @@
+import json
+
 from boomerang.data.sql import coreSQL
 from boomerang.data.validated import ValidatedDict
 
@@ -27,7 +29,7 @@ class userDataHandle():
                     'id': userid,
                     'cardid': card,
                     'banned': banned,
-                    'data': data
+                    'data': json.loads(data)
                 }),
                 True
             )
@@ -52,5 +54,15 @@ class userDataHandle():
                 'id': userid,
                 'cardid': card,
                 'banned': banned,
-                'data': data
+                'data': json.loads(data)
             })
+
+    def putUserFromUserID(userid: int, user: ValidatedDict):
+        '''
+        Given a valid user dict, put it in the server.
+        '''
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"UPDATE user SET cardid='{user.get_str('cardid')}', data='{json.dumps(user.get_dict('data'))}' WHERE id={user.get_int('id')}")
+        connection.commit()
+        connection.close()
