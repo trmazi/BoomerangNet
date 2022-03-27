@@ -1,5 +1,7 @@
 from flask_restful import Resource
 
+from boomerang.data.network import networkDataHandle
+
 class machineRoutes():
     '''
     A class used to route all of the main machine calls. 
@@ -7,7 +9,7 @@ class machineRoutes():
     '''
     class routeMachinePoints(Resource):
         def get(self, machine_id):
-            if machine_id == 'EC00000000000000':
+            if networkDataHandle.getMachineFromID(machine_id) == None:
                 data = {
                     'point': 0
                 }
