@@ -6,6 +6,37 @@ class networkDataHandle():
     Handle core network data.
     '''
 
+    def getAllNews():
+        '''
+        Returns all news from the server.
+        '''
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM notice ORDER BY id DESC")
+
+        results = cursor.fetchall()
+        if results == None:
+            return None
+
+        allnews = []
+        
+        for result in results:
+            newsid, nation, title, contenttype, content, content2, image = result
+            allnews.append(ValidatedDict(
+                {
+                    'noticeNo': newsid-1+1000,
+                    'nation': nation,
+                    'title': title,
+                    'noticeType': 'event',
+                    'contentType': contenttype,
+                    'content': content,
+                    'content2': content2,
+                    'image': image
+                }
+            ))
+
+        return allnews
+
     def getMachineFromID(machine_id: str):
         '''
         Given a Machine ID, return a machine dict.

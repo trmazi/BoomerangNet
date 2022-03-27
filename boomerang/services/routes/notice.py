@@ -1,24 +1,15 @@
 from flask_restful import Resource
 
+from boomerang.data.network import networkDataHandle
+
 class routeNotices(Resource):
     '''
     Class for handling newsposts. For now,
     since we don't have a DB, this is bogus.
     '''
     def get(self):
-        news = [{
-            'noticeNo': 1000,
-            'nation': 'KR',
-            'title': 'Welcome to BoomerangNet!',
-            'noticeType': 'event',
-            'contentType': 'text',
-            'content': 'A 3rd party network for Beatcraft Cyclon,\nwritten in Flask.',
-            'content2': "We are glad to see you!",
-            'image': '',
-        }]
-
         data = {
-            'notices': news
+            'notices': networkDataHandle.getAllNews()
         }
 
         return data, 200
