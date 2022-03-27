@@ -31,7 +31,8 @@ class setupDatabase():
 
         tables = [
             "CREATE TABLE notice (id INTEGER PRIMARY KEY AUTOINCREMENT, nation TEXT, title TEXT, conenttype TEXT, content TEXT, content2 TEXT, image TEXT)",
-            "CREATE TABLE machine (id INTEGER PRIMARY KEY AUTOINCREMENT, machineid TEXT)",
+            "CREATE TABLE machine (id INTEGER PRIMARY KEY AUTOINCREMENT, machineid TEXT, arcade INTEGER)",
+            "CREATE TABLE arcade (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, data TEXT)",
             "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, cardid TEXT NOT NULL, banned bool NOT NULL, data TEXT NOT NULL)",
             "CREATE TABLE music (id INTEGER PRIMARY KEY AUTOINCREMENT, gameid TEXT NOT NULL, difficulty INTEGER, title TEXT, artist TEXT, genre TEXT, data TEXT)",
             "CREATE TABLE score (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER NOT NULL, points INTEGER, data TEXT)",
