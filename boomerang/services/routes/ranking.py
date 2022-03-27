@@ -6,7 +6,7 @@ class routeRanking():
     '''
     class bootupRanking(Resource):
         '''
-        I don't actually know how to handle this request lol, it's weird.
+        Demo loop ranking data
         '''
         def get(self):
             return {}, 200
