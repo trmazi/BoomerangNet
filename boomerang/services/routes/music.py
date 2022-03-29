@@ -84,5 +84,4 @@ class routeMusic():
 
     class routeNearRankings(Resource):
         def get(self, music_id):
-            print(music_id)
             return [{}], 200
