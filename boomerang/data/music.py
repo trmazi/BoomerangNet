@@ -13,16 +13,19 @@ class scoreDataHandle():
         Given a userid, songid, and a score, saves it.
         '''
 
-        # Figure out if we've already done better on this song+chart
-        oldscore = scoreDataHandle.getScore(userid, songid, chart)
-        if oldscore != None:
-            olddata = oldscore.get_dict('data', {})
-            if olddata.get_int('totalAccuracy') > scoredata.get_int('totalAccuracy') and olddata.get_int('score') > scoredata.get_int('score'):
-                scoredata = olddata
-
         connection = coreSQL.makeConnection()
         cursor = connection.cursor()
-        cursor.execute(f"UPDATE score SET userid={userid}, musicid='{songid}', chart={chart}, data='{json.dumps(scoredata)}'")
+
+        # Figure out if we've already done better on this song+chart
+        oldscore = scoreDataHandle.getScore(userid, songid, chart)
+        olddata = ValidatedDict({})
+        if oldscore != None:
+            olddata = oldscore.get_dict('data', {})
+        if olddata.get_int('totalAccuracy') > scoredata.get_int('totalAccuracy') and olddata.get_int('score') > scoredata.get_int('score'):
+            cursor.execute(f"UPDATE score SET userid={userid}, musicid='{songid}', chart={chart}, data='{json.dumps(olddata)}'")
+        else:
+            cursor.execute(f"INSERT INTO score (userid, musicid, chart, data) VALUES ({userid}, '{songid}', {chart}, '{json.dumps(scoredata)}')")
+        
         connection.commit()
         connection.close()
 
@@ -33,7 +36,7 @@ class scoreDataHandle():
 
         connection = coreSQL.makeConnection()
         cursor = connection.cursor()
-        cursor.execute(f"SELECT * FROM score where userid={userid}, musicid='{songid}', chart={chart}")
+        cursor.execute(f"SELECT * FROM score where userid={userid} and musicid='{songid}' and chart={chart}")
 
         result = cursor.fetchone()
 
