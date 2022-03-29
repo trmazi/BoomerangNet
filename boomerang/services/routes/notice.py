@@ -4,8 +4,7 @@ from boomerang.data.network import networkDataHandle
 
 class routeNotices(Resource):
     '''
-    Class for handling newsposts. For now,
-    since we don't have a DB, this is bogus.
+    Class for handling newsposts.
     '''
     def get(self):
         data = {
