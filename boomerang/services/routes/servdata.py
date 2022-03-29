@@ -11,8 +11,8 @@ class routeBaseData():
             for i in range (15):
                 leveltable = {
                     'level': i,
-                    'levelUpExp': 45,
-                    'maxExp': 1000*i,
+                    'levelUpExp': 10,
+                    'maxExp': 100*i,
                 }
                 levellist.append(leveltable)
 
