@@ -35,7 +35,7 @@ class setupDatabase():
             "CREATE TABLE arcade (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, data TEXT)",
             "CREATE TABLE user (id INTEGER PRIMARY KEY AUTOINCREMENT, cardid TEXT NOT NULL, banned bool NOT NULL, data TEXT NOT NULL)",
             "CREATE TABLE music (id INTEGER PRIMARY KEY AUTOINCREMENT, gameid TEXT NOT NULL, difficulty INTEGER, title TEXT, artist TEXT, genre TEXT, data TEXT)",
-            "CREATE TABLE score (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER NOT NULL, points INTEGER, data TEXT)",
+            "CREATE TABLE score (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER NOT NULL, songid TEXT NOT NULL, chart INTEGER, data TEXT)",
             "CREATE TABLE ranking (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL, data TEXT)"
         ]
 
