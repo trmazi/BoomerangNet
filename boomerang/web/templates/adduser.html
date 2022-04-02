@@ -6,27 +6,28 @@
         <title>User creation</title>
     </head>
     <body>
-        <h1>Add a new user</h1>
-        <p>Input your username and select your desired icon.</p>
-        <br>
-        <form action='' method = "POST">
-            <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-            <input type="hidden" name="iconid" id="iconid" value="" />
-            <select name="iconid" type="text" class="form-select iconid" aria-label="iconid">
-                <option selected>Profile Icon</option>
-                {% for id, icon in iconlist %}
-                <option value={{id}} data-imagesrc={{url_for('icons', filename=icon)}}></option>
-                {% endfor %}
-            </select>
-            <p><input type = "submit" value = "Submit" /></p>
-        </form>
-        <script>
-            $('.iconid').ddslick({
-                onSelected: function(selectedData){
-                    $('#iconid').val(selectedData.selectedData.value);
-                }
-            });
-        </script>
-
+        <div class="container">
+            <h1>Add a new user</h1>
+            <p>Input your username and select your desired icon.</p>
+            <br>
+            <form action='' method = "POST">
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
+                <input type="hidden" name="iconid" id="iconid" value="" />
+                <select name="iconid" type="text" class="form-select iconid" aria-label="iconid">
+                    <option selected>Profile Icon</option>
+                    {% for id, icon in iconlist %}
+                    <option value={{id}} data-imagesrc={{url_for('icons', filename=icon)}}></option>
+                    {% endfor %}
+                </select>
+                <p><input type = "submit" value = "Submit" /></p>
+            </form>
+            <script>
+                $('.iconid').ddslick({
+                    onSelected: function(selectedData){
+                        $('#iconid').val(selectedData.selectedData.value);
+                    }
+                });
+            </script>
+        </div>
     </body>
 </html>

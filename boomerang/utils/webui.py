@@ -14,6 +14,10 @@ class BoomerangWebui():
         '''
         Given the webui app, register the pages.
         '''
+        @app.route('/web/')
+        def top():
+            return render_template('web.html')
+
         @app.route('/icons/<path:filename>')
         def icons(filename):
             return send_from_directory('./boomerang/web/assets/profileicn', filename)
