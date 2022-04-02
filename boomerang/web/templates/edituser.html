@@ -1,24 +1,22 @@
-{% include 'webtop.html' %}
+{% include 'loaduser.html' %}
+<br>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>User creation</title>
-    </head>
     <body>
         <div class="container">
-            <h1>Add a new user</h1>
-            <p>Input your username and select your desired icon.</p>
+            <h3>Successfully loaded user <samp>{{ username }}</samp></h3>
+            <p>Input your updated data.</p>
             <br>
             <form action='' method = "POST">
-                <input type="text" class="form-control" id="username" name="username" placeholder="Username">
-                <input type="text" class="form-control" id="cardid" name="cardid" minlength="20" maxlength="20" placeholder="CardID (Leave blank for random ID)">
-                <input type="hidden" name="iconid" id="iconid" value="" />
+                <input type="text" class="form-control" id="username" name="username" placeholder="Username" value="{{username}}">
+                <input type="hidden" name="iconid" id="iconid" value="{{iconid}}" />
+                <input type="hidden" name="userid" id="userid" value="{{userid}}" />
                 <br>
                 <h4>Profile Icon</h4>
                 <select name="iconid" type="text" class="form-select iconid" aria-label="iconid">
                 </select>
-                <p><input type = "submit" value = "Submit" /></p>
+                <p><input type = "submit" value = "Update" /></p>
             </form>
             <script>
                 var ddData = [
@@ -35,7 +33,7 @@
 
                 $('.iconid').ddslick({
                     width:115,
-                    defaultSelectedIndex:1,
+                    defaultSelectedIndex:{{iconid}},
                     data: ddData,
                     onSelected: function(selectedData){
                         $('#iconid').val(selectedData.selectedData.value);
