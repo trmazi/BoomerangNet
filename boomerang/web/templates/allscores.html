@@ -1,0 +1,34 @@
+{% include 'webtop.html' %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>All Scores</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>All network scores</h1>
+            <br>
+            <table class="table table-light table-striped">
+                <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Song</th>
+                      <th scope="col">Chart</th>
+                      <th scope="col">Player</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for score in scores %}
+                    <tr>
+                      <th scope="row">{{score.get('id')}}</th>
+                      <td>{{score.get('title')}} - {{score.get('artist')}}</td>
+                      <td>{{score.get('chart')}}</td>
+                      <td>{{score.get('username')}}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

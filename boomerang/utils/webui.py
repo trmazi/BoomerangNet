@@ -3,6 +3,7 @@ import random
 import string
 
 from boomerang.data.user import userDataHandle
+from boomerang.data.music import scoreDataHandle, songDataHandle
 from boomerang.data.network import networkDataHandle
 from boomerang.data.validated import ValidatedDict
 
@@ -17,6 +18,22 @@ class BoomerangWebui():
         @app.route('/web/')
         def top():
             return render_template('web.html')
+
+        @app.route('/web/allscores')
+        def allscores():
+            scores = scoreDataHandle.getAllScores()
+            webscores = []
+            for score in scores:
+                data = {
+                    'username': userDataHandle.userFromUserID(score.get('userid')).get_dict('data').get_str('name', "Newcomer"),
+                    'title': songDataHandle.getSongFromId(score.get('songid')).get_str('title'),
+                    'artist': songDataHandle.getSongFromId(score.get('songid')).get_str('artist'),
+                    'chart': score.get('chart'),
+                    'id': score.get('id')
+                }
+                webscores.append(data)
+
+            return render_template('allscores.html', scores = webscores)
 
         @app.route('/icons/<path:filename>')
         def icons(filename):

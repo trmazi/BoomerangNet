@@ -81,3 +81,62 @@ class scoreDataHandle():
                     'data': json.loads(data)
                 }))
             return scores
+
+    def getAllScores():
+        '''
+        Returns a list of all the scores on the network
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM score ORDER BY id DESC")
+
+        results = cursor.fetchall()
+
+        if results is None:
+            connection.close()
+            return None
+        else:
+            scores = []
+            for result in results:
+                scoreid, userid, songid, chart, data = result
+                connection.close()
+                scores.append(ValidatedDict({
+                    'id': scoreid,
+                    'userid': userid,
+                    'songid': songid,
+                    'chart': chart,
+                    'data': json.loads(data)
+                }))
+            return scores
+
+class songDataHandle():
+    '''
+    Class for getting information about songs.
+    '''
+    def getSongFromId(songid):
+        '''
+        Given a songid, return a song.
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM music where gameid='{songid}'")
+
+        result = cursor.fetchone()
+
+        if result is None:
+            connection.close()
+            return None
+        else:
+            id, gameid, difficulty, title, artist, genre, data = result
+            connection.close()
+            return ValidatedDict({
+                'id': id,
+                'gameid': gameid,
+                'difficulty': difficulty,
+                'title': title,
+                'artist': artist,
+                'genre': genre,
+                'data': json.loads(data)
+            })
