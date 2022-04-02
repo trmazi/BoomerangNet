@@ -46,9 +46,14 @@ class BoomerangWebui():
         
             if request.method == 'POST':
                 letters = string.ascii_letters
-                cardid = 'C'+''.join(random.choice(letters) for i in range(19))
-                while userDataHandle.checkForCardid(cardid):
+
+                cardid = request.form['cardid']
+                if cardid == "":
                     cardid = 'C'+''.join(random.choice(letters) for i in range(19))
+                    while userDataHandle.checkForCardid(cardid):
+                        cardid = 'C'+''.join(random.choice(letters) for i in range(19))
+                if userDataHandle.checkForCardid(cardid):
+                    return "This card is already in use!"
 
                 username = request.form['username']
                 iconid = request.form['iconid']
