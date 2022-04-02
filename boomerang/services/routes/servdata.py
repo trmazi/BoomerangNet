@@ -6,14 +6,8 @@ class routeBaseData():
     '''
     class routeUserLevelTable(Resource):
         def get(self):
-            levellist = []
+            '''
+            For adjusting level up data. We're not messing with this for now.
+            '''
 
-            for i in range (15):
-                leveltable = {
-                    'level': i,
-                    'levelUpExp': 10,
-                    'maxExp': 100*i,
-                }
-                levellist.append(leveltable)
-
-            return levellist
+            return None
