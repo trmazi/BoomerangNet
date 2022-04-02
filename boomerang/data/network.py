@@ -1,10 +1,21 @@
 from boomerang.data.sql import coreSQL
 from boomerang.data.validated import ValidatedDict
+import os
 
 class networkDataHandle():
     '''
     Handle core network data.
     '''
+
+    def getIconList():
+        '''
+        Returns a list of tupeles with data of (id, filename)
+        '''
+        iconlist = []
+        for icon in os.listdir('./boomerang/web/assets/profileicn'):
+            iconlist.append((int(icon.replace('.png', '')), icon))
+
+        return iconlist
 
     def getAllNews():
         '''

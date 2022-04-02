@@ -14,12 +14,19 @@ from boomerang.services.routes.auth import routeAuth
 from boomerang.services.routes.users import routeUsers
 from boomerang.services.routes.stages import routeStages
 
+# Import the webui
+from boomerang.utils.webui import BoomerangWebui
+
 # Import DB stuff
 import boomerang.data.sql
 
 app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
 api = Api(app)
 
+# Load the webui
+BoomerangWebui.setupRoutes(app)
+
+# Route the rest
 @app.route('/')
 def home():
     return render_template('base.html')

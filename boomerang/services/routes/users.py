@@ -21,7 +21,7 @@ class routeUsers():
                 'userId': user.get_int('id', None),
                 'nation': userdict.get_str('nation', "KR"),
                 'name': userdict.get_str('name', "Newcomer"),
-                'iconId': userdict.get_int('icon', 1000),
+                'iconId': userdict.get_int('iconid', 1)+999,
                 'level': userdict.get_int('level', 1),
                 'beatPoint': userdict.get_int('points'),
                 'exp': userdict.get_int('exp'),
