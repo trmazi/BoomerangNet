@@ -28,7 +28,7 @@ BoomerangWebui.setupRoutes(app)
 
 # Route the rest
 @app.route('/')
-def home():
+def root():
     return render_template('base.html')
 
 @app.route('/services')
