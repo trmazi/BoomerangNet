@@ -1,3 +1,4 @@
 
 *.pyc
 *.sql
+*.sql-journal
