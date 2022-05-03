@@ -82,6 +82,34 @@ class scoreDataHandle():
                 }))
             return scores
 
+    def getScoreRanking(songid: str):
+        '''
+        Given the songid of a score, returns array of all scores.
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM score where musicid='{songid}'")
+
+        results = cursor.fetchall()
+
+        if results is None:
+            connection.close()
+            return None
+        else:
+            scores = []
+            for result in results:
+                scoreid, userid, songid, chart, data = result
+                connection.close()
+                scores.append(ValidatedDict({
+                    'id': scoreid,
+                    'userid': userid,
+                    'songid': songid,
+                    'chart': chart,
+                    'data': json.loads(data)
+                }))
+            return scores
+
     def getAllScores():
         '''
         Returns a list of all the scores on the network

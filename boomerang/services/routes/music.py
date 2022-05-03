@@ -1,6 +1,7 @@
 from flask_restful import Resource
 
 from boomerang.data.music import scoreDataHandle
+from boomerang.data.user import userDataHandle
 from boomerang.data.validated import ValidatedDict
 
 class routeMusic():
@@ -43,16 +44,22 @@ class routeMusic():
                         )
 
             # Network-wide rankings.
-            for i in range(100):
+            index = 0
+            for score in scoreDataHandle.getScoreRanking(music_id):
+                score: ValidatedDict = score
+                scoredata = score.get_dict('data', {})
+                user: ValidatedDict = userDataHandle.userFromUserID(score.get_int('userid'))
+
                 weeklyTop.append(
                     {
-                        'name': 'JoeMama',
+                        'name': user.get_dict('data').get_str('name'),
                         'nation': 'KR',
-                        'score': 100*i,
-                        'ranking': i
+                        'score': scoredata.get_int('score'),
+                        'ranking': index
                     }
                 )
-                
+                index += 1
+
             data = {
                 'userPatternsStatus': patternstatus,
                 'weeklyTop': weeklyTop
@@ -68,29 +75,21 @@ class routeMusic():
             if music_id is None:
                 return None
 
-            # Route for guest
-            patternstatus.append(
-                {
-                    'best':{
-                        'score': 6969,
-                        'noteScore': 100,
-                        'maxCombo': 10,
-                        'realCombo': 20,
-                        'accuracy': 100,
-                        'rankClass': 'A',
-                    }
-                }
-            )
+            index = 0
+            for score in scoreDataHandle.getScoreRanking(music_id):
+                score: ValidatedDict = score
+                scoredata = score.get_dict('data', {})
+                user: ValidatedDict = userDataHandle.userFromUserID(score.get_int('userid'))
 
-            for i in range(100):
                 weeklyTop.append(
                     {
-                        'name': 'JoeMama',
+                        'name': user.get_dict('data').get_str('name'),
                         'nation': 'KR',
-                        'score': 100*i,
-                        'ranking': i
+                        'score': scoredata.get_int('score'),
+                        'ranking': index
                     }
                 )
+                index += 1
                 
             data = {
                 'userPatternStatus': patternstatus,
