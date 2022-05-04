@@ -9,7 +9,7 @@ class routeBaseData():
     class routeUserLevelTable(Resource):
         def get(self):
             '''
-            For adjusting level up data. We're not messing with this for now.
+            For adjusting level up data.
             '''
             levellist = []
 
