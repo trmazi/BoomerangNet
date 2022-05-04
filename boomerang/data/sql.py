@@ -38,6 +38,8 @@ class setupDatabase():
             "CREATE TABLE mission (id INTEGER PRIMARY KEY AUTOINCREMENT, gameid TEXT NOT NULL, difficulty INTEGER, m_title TEXT, p_title TEXT, data TEXT)",
             "CREATE TABLE rave_up (id INTEGER PRIMARY KEY AUTOINCREMENT, albumid TEXT NOT NULL, title TEXT, data TEXT)",
             "CREATE TABLE score (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER NOT NULL, songid TEXT NOT NULL, chart INTEGER, data TEXT)",
+            "CREATE TABLE mission_score (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER NOT NULL, missionid TEXT NOT NULL, data TEXT)",
+            "CREATE TABLE rave_score (id INTEGER PRIMARY KEY AUTOINCREMENT, userid INTEGER NOT NULL, albumid TEXT NOT NULL, data TEXT)",
             "CREATE TABLE ranking (id INTEGER PRIMARY KEY AUTOINCREMENT, type TEXT NOT NULL, data TEXT)"
         ]
 
