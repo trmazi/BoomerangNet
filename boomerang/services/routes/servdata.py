@@ -1,5 +1,7 @@
 from flask_restful import Resource
 
+from boomerang.data.validated import UserLevelTable
+
 class routeBaseData():
     '''
     Class for routing base server data.
@@ -9,5 +11,14 @@ class routeBaseData():
             '''
             For adjusting level up data. We're not messing with this for now.
             '''
+            levellist = []
 
-            return None
+            for i in range(1, 99):
+                level = {
+                    'level': i,
+                    'levelUpExp': UserLevelTable.table.get(i),
+                    'maxExp': UserLevelTable.table.get(i+1 if i != 99 else 99)
+                }
+                levellist.append(level)
+
+            return levellist
