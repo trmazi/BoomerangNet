@@ -1,7 +1,7 @@
 from flask_restful import Resource
 from flask import request
 
-from boomerang.data.validated import ValidatedDict
+from boomerang.data.validated import ValidatedDict, UserLevelTable
 from boomerang.data.user import userDataHandle
 
 class routeUsers():
@@ -17,12 +17,14 @@ class routeUsers():
             userdict = user.get_dict('data')
             configdict = userdict.get_dict('config')
 
+            userlevel = UserLevelTable.table.get(userdict.get_int('exp')) or UserLevelTable.table[min(UserLevelTable.table.keys(), key = lambda key: abs(key-userdict.get_int('exp')))]
+
             userdata = {
                 'userId': user.get_int('id', None),
                 'nation': userdict.get_str('nation', "KR"),
                 'name': userdict.get_str('name', "Newcomer"),
                 'iconId': userdict.get_int('iconid', 1)+999,
-                'level': userdict.get_int('level', 1),
+                'level': userlevel,
                 'beatPoint': userdict.get_int('points'),
                 'exp': userdict.get_int('exp'),
                 'configurations': configdict,
