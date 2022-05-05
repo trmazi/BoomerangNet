@@ -14,7 +14,11 @@ class routeMission():
             '''
             Load score for mission.
             '''
-            return missionDataHandle.getMission(int(user_id), mission_id).get_dict('data'), 200
+            mission = missionDataHandle.getMission(int(user_id), mission_id)
+            if mission is not None:
+                return mission.get_dict('data'), 200
+            else:
+                return {}, 200
 
     class routeMissionLoadGuest(Resource):
         def get(self):
