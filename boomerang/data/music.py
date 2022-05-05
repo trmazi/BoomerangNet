@@ -138,6 +138,79 @@ class scoreDataHandle():
                 }))
             return scores
 
+class missionDataHandle():
+    def putMission(userid: int, missionid: str, scoredata: ValidatedDict):
+        '''
+        Given a userid, missionid, and a score, saves it.
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+
+        # Figure out if we've already done better on this mission
+        oldscore = missionDataHandle.getMission(userid, missionid)
+        olddata = ValidatedDict({})
+        if oldscore != None:
+            olddata = oldscore.get_dict('data', {})
+        if olddata.get_int('totalAccuracy') > scoredata.get_int('totalAccuracy') and olddata.get_int('score') > scoredata.get_int('score'):
+            cursor.execute(f"UPDATE mission_score SET userid={userid}, missionid='{missionid}', data='{json.dumps(olddata)}'")
+        else:
+            cursor.execute(f"INSERT INTO mission_score (userid, missionid, data) VALUES ({userid}, '{missionid}', '{json.dumps(scoredata)}')")
+        
+        connection.commit()
+        connection.close()
+
+    def getMission(userid: int, missionid: str):
+        '''
+        Given the userid, missionid, and chart of a score, returns said score.
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM mission_score where userid={userid} and missionid='{missionid}'")
+
+        result = cursor.fetchone()
+
+        if result is None:
+            connection.close()
+            return None
+        else:
+            scoreid, userid, missionid, data = result
+            connection.close()
+            return ValidatedDict({
+                'id': scoreid,
+                'userid': userid,
+                'missionid': missionid,
+                'data': json.loads(data)
+            })
+
+    def getAllMissions():
+        '''
+        Returns a list of all the missions on the network
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM mission_score ORDER BY id DESC")
+
+        results = cursor.fetchall()
+
+        if results is None:
+            connection.close()
+            return None
+        else:
+            scores = []
+            for result in results:
+                scoreid, userid, songid, data = result
+                connection.close()
+                scores.append(ValidatedDict({
+                    'id': scoreid,
+                    'userid': userid,
+                    'songid': songid,
+                    'data': json.loads(data)
+                }))
+            return scores
+
 class songDataHandle():
     '''
     Class for getting information about songs.

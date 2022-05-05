@@ -13,6 +13,7 @@ from boomerang.services.routes.music import routeMusic
 from boomerang.services.routes.auth import routeAuth
 from boomerang.services.routes.users import routeUsers
 from boomerang.services.routes.stages import routeStages
+from boomerang.services.routes.mission import routeMission
 
 # Import the webui
 from boomerang.utils.webui import BoomerangWebui
@@ -55,6 +56,10 @@ api.add_resource(routeStages.routeUserFinalHistories, '/services/stages/user/<us
 api.add_resource(routeStages.routeGuestUserMusicHistories, '/services/stages/user//music/histories')
 api.add_resource(routeStages.routeGuestUserFinalHistories, '/services/stages/user//final/histories')
 api.add_resource(routeStages.routeStageNearRankings, '/services/stages/nearRankings')
+api.add_resource(routeMission.routeMissionLoad, '/services/mission/<mission_id>/user/<user_id>')
+api.add_resource(routeMission.routeMissionLoadGuest, '/services/mission//user/')
+api.add_resource(routeMission.routeMissionSave, '/services/mission/user/<user_id>/histories')
+api.add_resource(routeMission.routeMissionSaveGuest, '/services/mission/user//histories')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")
