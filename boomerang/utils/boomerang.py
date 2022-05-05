@@ -60,6 +60,7 @@ api.add_resource(routeMission.routeMissionLoad, '/services/mission/<mission_id>/
 api.add_resource(routeMission.routeMissionLoadGuest, '/services/mission//user/')
 api.add_resource(routeMission.routeMissionSave, '/services/mission/user/<user_id>/histories')
 api.add_resource(routeMission.routeMissionSaveGuest, '/services/mission/user//histories')
+api.add_resource(routeMission.routeNearRankings, '/services//mission/<mission_id>/nearRankings')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")

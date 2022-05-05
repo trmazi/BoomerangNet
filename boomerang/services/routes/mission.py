@@ -51,3 +51,25 @@ class routeMission():
     class routeMissionSaveGuest(Resource):
         def post(self):
             return 201
+
+    class routeNearRankings(Resource):
+        def get(self, mission_id):
+            rankings = []
+            index = 0
+
+            for score in missionDataHandle.getMissionRanking(mission_id):
+                score: ValidatedDict = score
+                scoredata = score.get_dict('data', {})
+                user: ValidatedDict = userDataHandle.userFromUserID(score.get_int('userid'))
+
+                rankings.append(
+                    {
+                        'name': user.get_dict('data').get_str('name'),
+                        'nation': 'KR',
+                        'score': scoredata.get_int('score'),
+                        'ranking': index
+                    }
+                )
+                index += 1
+
+            return rankings, 200
