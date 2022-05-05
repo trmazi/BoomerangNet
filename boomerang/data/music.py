@@ -22,7 +22,7 @@ class scoreDataHandle():
         if oldscore != None:
             olddata = oldscore.get_dict('data', {})
         if olddata.get_int('totalAccuracy') > scoredata.get_int('totalAccuracy') and olddata.get_int('score') > scoredata.get_int('score'):
-            cursor.execute(f"UPDATE score SET userid={userid}, musicid='{songid}', chart={chart}, data='{json.dumps(olddata)}'")
+            cursor.execute(f"UPDATE score SET data='{json.dumps(olddata)}' where userid={userid} and musicid='{songid}' and chart={chart}")
         else:
             cursor.execute(f"INSERT INTO score (userid, musicid, chart, data) VALUES ({userid}, '{songid}', {chart}, '{json.dumps(scoredata)}')")
         
@@ -153,7 +153,7 @@ class missionDataHandle():
         if oldscore != None:
             olddata = oldscore.get_dict('data', {})
         if olddata.get_int('totalAccuracy') > scoredata.get_int('totalAccuracy') and olddata.get_int('score') > scoredata.get_int('score'):
-            cursor.execute(f"UPDATE mission_score SET userid={userid}, missionid='{missionid}', data='{json.dumps(olddata)}'")
+            cursor.execute(f"UPDATE mission_score SET data='{json.dumps(olddata)}' where userid={userid} and missionid='{missionid}'")
         else:
             cursor.execute(f"INSERT INTO mission_score (userid, missionid, data) VALUES ({userid}, '{missionid}', '{json.dumps(scoredata)}')")
         
