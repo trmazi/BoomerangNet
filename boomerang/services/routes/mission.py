@@ -16,9 +16,19 @@ class routeMission():
             '''
             mission = missionDataHandle.getMission(int(user_id), mission_id)
             if mission is not None:
-                return mission.get_dict('data'), 200
+                data = mission.get_dict('data')
             else:
                 return {}, 200
+
+            return {
+                'best': {
+                    'score': data.get_int('score'),
+                    'maxCombo': data.get_int('maxCombo'),
+                    'accuracy': data.get_int('totalAccuracy'),
+                    'rankClass': data.get_str('rankClass')
+                },
+                'bestEmblem': data.get_dict('emblem')
+            }, 200
 
     class routeMissionLoadGuest(Resource):
         def get(self):
