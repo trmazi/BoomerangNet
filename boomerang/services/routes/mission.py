@@ -52,7 +52,7 @@ class routeMission():
         def post(self):
             return 201
 
-    class routeNearRankings(Resource):
+    class routeNearMissionRankings(Resource):
         def get(self, mission_id):
             rankings = []
             index = 0
