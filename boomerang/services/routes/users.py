@@ -17,7 +17,7 @@ class routeUsers():
             userdict = user.get_dict('data')
             configdict = userdict.get_dict('config')
 
-            userlevel = UserLevelTable.table.get(userdict.get_int('exp')) or UserLevelTable.table[min(UserLevelTable.table.keys(), key = lambda key: abs(key-userdict.get_int('exp')))]
+            userlevel = UserLevelTable.table.get(userdict.get_int('exp') * 3) or UserLevelTable.table[min(UserLevelTable.table.keys(), key = lambda key: abs(key-userdict.get_int('exp') * 3))]
 
             userdata = {
                 'userId': user.get_int('id', None),
