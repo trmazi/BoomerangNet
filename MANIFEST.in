@@ -1,0 +1,4 @@
+include boomerang/db/*
+include boomerang/services/static/*
+include boomerang/web/assets/profileicn/*
+include boomerang/web/templates/*
