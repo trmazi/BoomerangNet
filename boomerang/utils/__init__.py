@@ -1,5 +1,5 @@
 from boomerang.utils.webui import BoomerangWebui
-from boomerang.utils.boomerang import app
+from boomerang.utils.main import app
 
 __all__ = [
     "app",

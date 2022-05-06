@@ -8,4 +8,4 @@ if __name__ == "__main__":
 	sys.path.append(path)
 
 	import runpy
-	runpy.run_module(f"boomerang.utils.boomerang", run_name="__main__")
+	runpy.run_module(f"boomerang.utils.main", run_name="__main__")
