@@ -41,7 +41,7 @@ class networkDataHandle():
                     'noticeNo': newsid-1+1000,
                     'nation': nation,
                     'title': title,
-                    'noticeType': 'event',
+                    'noticeType': 'notice',
                     'contentType': contenttype,
                     'content': content,
                     'content2': content2,
