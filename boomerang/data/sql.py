@@ -2,12 +2,14 @@ from os.path import exists
 import sqlite3
 import sys
 
+from boomerang.db.path import SQLPath
+
 class coreSQL():
     '''
     Core SQL datas, like connections.
     '''
     def makeConnection():
-        return sqlite3.connect('./boomerang/db/database.sql')
+        return sqlite3.connect(SQLPath.getSQLPath())
 
 class setupDatabase():
     '''
@@ -18,7 +20,7 @@ class setupDatabase():
         '''
         Checks to see if the database file exists.
         '''
-        database_exists = exists("./boomerang/db/database.sql")
+        database_exists = exists(SQLPath.getSQLPath())
         if database_exists:
             return True
         else: return False
