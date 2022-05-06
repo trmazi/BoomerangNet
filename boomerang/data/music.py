@@ -165,7 +165,7 @@ class missionDataHandle():
 
     def getMission(userid: int, missionid: str):
         '''
-        Given the userid, missionid, and chart of a score, returns said score.
+        Given the userid, missionid, returns said score.
         '''
 
         connection = coreSQL.makeConnection()
@@ -237,6 +237,108 @@ class missionDataHandle():
                     'id': scoreid,
                     'userid': userid,
                     'missionid': songid,
+                    'data': json.loads(data)
+                }))
+            return scores
+
+class raveUpDataHandle():
+    def putAlbum(userid: int, albumid: str, scoredata: ValidatedDict):
+        '''
+        Given a userid, albumid, and a score, saves it.
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+
+        # Figure out if we've already done better on this raveup
+        oldscore = raveUpDataHandle.getAlbum(userid, albumid)
+        olddata = ValidatedDict({})
+        if oldscore != None:
+            olddata = oldscore.get_dict('data', {})
+            oldid = oldscore.get_int('id')
+
+            if olddata.get_int('totalAccuracy') < scoredata.get_int('totalAccuracy') and olddata.get_int('score') < scoredata.get_int('score'):
+                cursor.execute(f"UPDATE rave_score SET data='{json.dumps(olddata)}' where userid={userid} and albumid='{albumid}' and id={oldid}")
+        else: 
+            cursor.execute(f"INSERT INTO rave_score (userid, albumid, data) VALUES ({userid}, '{albumid}', '{json.dumps(scoredata)}')")
+        
+        connection.commit()
+        connection.close()
+
+    def getAlbum(userid: int, albumid: str):
+        '''
+        Given the userid, albumid, returns said score.
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM rave_score where userid={userid} and albumid='{albumid}'")
+
+        result = cursor.fetchone()
+
+        if result is None:
+            connection.close()
+            return None
+        else:
+            scoreid, userid, albumid, data = result
+            connection.close()
+            return ValidatedDict({
+                'id': scoreid,
+                'userid': userid,
+                'albumid': albumid,
+                'data': json.loads(data)
+            })
+
+    def getAllAlbums():
+        '''
+        Returns a list of all the albums on the network
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM rave_score ORDER BY id DESC")
+
+        results = cursor.fetchall()
+
+        if results is None:
+            connection.close()
+            return None
+        else:
+            scores = []
+            for result in results:
+                scoreid, userid, songid, data = result
+                connection.close()
+                scores.append(ValidatedDict({
+                    'id': scoreid,
+                    'userid': userid,
+                    'albumid': songid,
+                    'data': json.loads(data)
+                }))
+            return scores
+
+    def getRaveUpRanking(albumid: str):
+        '''
+        Given the albumid of an album, returns array of all scores.
+        '''
+
+        connection = coreSQL.makeConnection()
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM rave_score where albumid='{albumid}'")
+
+        results = cursor.fetchall()
+
+        if results is None:
+            connection.close()
+            return None
+        else:
+            scores = []
+            for result in results:
+                scoreid, userid, albumid, data = result
+                connection.close()
+                scores.append(ValidatedDict({
+                    'id': scoreid,
+                    'userid': userid,
+                    'albumid': albumid,
                     'data': json.loads(data)
                 }))
             return scores
