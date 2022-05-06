@@ -71,7 +71,7 @@ api.add_resource(routeRaveUp.routeNearRaveUpRankings, '/services//album/<album_i
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")
-    parser.add_argument("-p", "--port", help="Port to listen on. Defaults to 80", type=int, default=80)
+    parser.add_argument("-p", "--port", help="Port to listen on. Defaults to 8020", type=int, default=8020)
     args = parser.parse_args()
 
     # Run the app
