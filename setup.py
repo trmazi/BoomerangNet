@@ -35,7 +35,12 @@ setup(
         'boomerang.data',
         'boomerang.db',
         'boomerang.services',
+        'boomerang.services.routes',
+        'boomerang.services.static',
         'boomerang.web',
+        'boomerang.web.assets',
+        'boomerang.web.assets.profileicn',
+        'boomerang.web.templates',
 
         # Wrapper scripts, utilities and associated code.
         'boomerang.utils',
