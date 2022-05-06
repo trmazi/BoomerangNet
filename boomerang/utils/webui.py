@@ -6,6 +6,7 @@ from boomerang.data.user import userDataHandle
 from boomerang.data.music import scoreDataHandle, songDataHandle
 from boomerang.data.network import networkDataHandle
 from boomerang.data.validated import ValidatedDict
+from boomerang.web.assets.profileicn.path import IconPath
 
 class BoomerangWebui():
     '''
@@ -37,7 +38,7 @@ class BoomerangWebui():
 
         @app.route('/icons/<path:filename>')
         def icons(filename):
-            return send_from_directory('./boomerang/web/assets/profileicn', filename)
+            return send_from_directory(IconPath.getIconPath(), filename)
 
         @app.route('/web/makeuser', methods = ['GET','POST'])
         def adduser():

@@ -3,6 +3,9 @@ from flask_restful import Api
 import argparse
 import os
 
+# Import path things
+from boomerang.web.templates.path import TemplatePath
+
 # Import the services
 from boomerang.services.routes.routestatics import routeStatics
 from boomerang.services.routes.machineroutes import machineRoutes
@@ -22,7 +25,7 @@ from boomerang.utils.webui import BoomerangWebui
 # Import DB stuff
 import boomerang.data.sql
 
-app = Flask(__name__, template_folder=os.path.abspath('./boomerang/web/templates'))
+app = Flask(__name__, template_folder=TemplatePath.getTemplatePath())
 api = Api(app)
 
 # Load the webui
