@@ -43,7 +43,7 @@ class networkDataHandle():
                     'title': title,
                     'noticeType': 'notice',
                     'contentType': contenttype,
-                    'content': content,
+                    'content': content.replace('\\n', '\n'),
                     'content2': content2,
                     'image': image
                 }
