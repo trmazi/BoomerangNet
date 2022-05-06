@@ -15,7 +15,8 @@ class networkDataHandle():
         '''
         iconlist = []
         for icon in os.listdir(IconPath.getIconPath()):
-            iconlist.append((int(icon.replace('.png', '')), icon))
+            if 'png' in icon:
+                iconlist.append((int(icon.replace('.png', '')), icon))
 
         return iconlist
 
