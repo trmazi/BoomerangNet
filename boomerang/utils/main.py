@@ -18,6 +18,7 @@ from boomerang.services.routes.users import routeUsers
 from boomerang.services.routes.stages import routeStages
 from boomerang.services.routes.mission import routeMission
 from boomerang.services.routes.raveup import routeRaveUp
+from boomerang.services.routes.patch import routeNetworkPatches
 
 # Import the webui
 from boomerang.utils.webui import BoomerangWebui
@@ -71,6 +72,9 @@ api.add_resource(routeRaveUp.routeRaveUpGuestRecord, '/services/album/<album_id>
 api.add_resource(routeRaveUp.routeRaveUpSave, '/services/album/user/<user_id>/histories')
 api.add_resource(routeRaveUp.routeRaveUpSaveGuest, '/services/album/user//histories')
 api.add_resource(routeRaveUp.routeNearRaveUpRankings, '/services//album/<album_id>/nearRankings')
+
+# Add patch stuff
+api.add_resource(routeNetworkPatches.routeUpdateVersion, '/patch/PatchVer.txt')
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="BoomerangNet: A 3rd party network for Beatcraft Cyclon, written in Flask.")
