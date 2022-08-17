@@ -13,8 +13,5 @@ Well, I've not written much code to make this easy to use, but you'll just want 
 You'll also need to import the song database. This is located in Cyclon/Data/Script/DiscStock.csv
 To import, use the `importsongs` tool.
 
-## DISCLAIMER (will remove when server is done)
-This server is very incomplete! I plan on having it done this weekend, but I want to open up the repo a bit.
-
 ## PostScript
 I ***know*** this server is not the greatest programming masterpiece you've seen in your entire life, trust me. I just decided to work on this since I now have a kit. I at least wrote it. You think you can do better than me? PROOVE IT and submit a PR. 
