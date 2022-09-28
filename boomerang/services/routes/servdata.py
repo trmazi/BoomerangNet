@@ -21,11 +21,11 @@ class routeBaseData():
             for i in range(1, 100):
                 last = get_key(i-1, UserLevelTable.table)
                 this = get_key(i, UserLevelTable.table)
-                next = get_key(i+1 if i != 99 else 99, UserLevelTable.table)
+                next = get_key(i+1, UserLevelTable.table)
 
                 level = {
                     'level': i,
-                    'levelUpExp': this - last,
+                    'levelUpExp': last,
                     'maxExp': next - this,
                 }
                 levellist.append(level)
