@@ -25,7 +25,7 @@ class routeBaseData():
 
                 level = {
                     'level': i,
-                    'levelUpExp': last,
+                    'levelUpExp': this - last,
                     'maxExp': next - this,
                 }
                 levellist.append(level)
