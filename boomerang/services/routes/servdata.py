@@ -13,9 +13,9 @@ class routeBaseData():
             '''
             levellist = []
 
-            for i in range(1, 99):
+            for i in range(99):
                 level = {
-                    'level': i,
+                    'level': i+1,
                     'levelUpExp': UserLevelTable.table.get(i),
                     'maxExp': UserLevelTable.table.get(i+1 if i != 99 else 99)
                 }
