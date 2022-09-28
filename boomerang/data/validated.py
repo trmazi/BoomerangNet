@@ -106,6 +106,7 @@ class UserLevelTable:
         9697550:98,
         10000000:99,
         10000000:100,
+        10000000:101,
     }
 
 class ValidatedDict(dict):
