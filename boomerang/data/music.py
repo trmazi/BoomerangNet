@@ -22,7 +22,7 @@ class scoreDataHandle():
         if oldscore != None:
             olddata = oldscore.get_dict('data', {})
             oldid = oldscore.get_int('id')
-            if olddata.get_int('totalAccuracy') < scoredata.get_int('totalAccuracy') and olddata.get_int('score') < scoredata.get_int('score'):
+            if olddata.get_int('score') < scoredata.get_int('score'):
                 cursor.execute(f"UPDATE score SET data='{json.dumps(olddata)}' where userid={userid} and musicid='{songid}' and chart={chart} and id={oldid}")
         else:
             cursor.execute(f"INSERT INTO score (userid, musicid, chart, data) VALUES ({userid}, '{songid}', {chart}, '{json.dumps(scoredata)}')")
