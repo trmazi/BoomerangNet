@@ -5,6 +5,7 @@ class UserLevelTable:
     Stores the User level table as a dict.
     '''
     table = {
+        0: 0,
         2700:1,
         6050:2,
         9950:3,
@@ -103,7 +104,7 @@ class UserLevelTable:
         8887850:96,
         9252200:97,
         9697550:98,
-        9697550:99,
+        10000000:99,
     }
 
 class ValidatedDict(dict):
