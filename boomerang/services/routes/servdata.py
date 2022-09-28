@@ -22,6 +22,7 @@ class routeBaseData():
                 last = get_key(i-1, UserLevelTable.table)
                 this = get_key(i, UserLevelTable.table)
                 next = get_key(i+1 if i+1 <= 99 else 99, UserLevelTable.table)
+                print (i, next)
 
                 level = {
                     'level': i,
