@@ -13,11 +13,16 @@ class routeBaseData():
             '''
             levellist = []
 
-            for i in range(99):
+            def get_key(val, dict):
+                for key, value in dict.items():
+                    if val == value:
+                        return key
+
+            for i in range(1, 100):
                 level = {
-                    'level': i+1,
-                    'levelUpExp': UserLevelTable.table.get(i),
-                    'maxExp': UserLevelTable.table.get(i+1 if i != 99 else 99)
+                    'level': i,
+                    'levelUpExp': get_key(i, UserLevelTable.table),
+                    'maxExp': get_key(i+1 if i != 99 else 99, UserLevelTable.table)
                 }
                 levellist.append(level)
 
